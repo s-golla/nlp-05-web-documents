@@ -34,8 +34,9 @@ from pathlib import Path
 # ============================================================
 
 # TODO: In your custom app, change the URL to work with a different page.
-PAGE_URL: str = "https://arxiv.org/abs/2602.20021"
-# arXiv abstract page — stable, scraping-friendly, academically relevant
+PAGE_URL: str = "https://arxiv.org/abs/2310.11453"
+# arXiv abstract page — Mistral 7B: A highly efficient language model
+# stable, scraping-friendly, academically relevant
 
 # Let them know who we are (and that we're doing educational web mining).
 HTTP_REQUEST_HEADERS: dict = {
@@ -53,5 +54,5 @@ PROCESSED_PATH: Path = DATA_PATH / "processed"
 
 # TODO: In your custom app, change the output file names from case_
 # to something that represents YOUR custom project.
-RAW_HTML_PATH: Path = RAW_PATH / "sgolla_raw.html"
-PROCESSED_CSV_PATH: Path = PROCESSED_PATH / "sgolla_processed.csv"
+RAW_HTML_PATH: Path = RAW_PATH / "sgolla_raw_new.html"
+PROCESSED_CSV_PATH: Path = PROCESSED_PATH / "sgolla_processed_new.csv"

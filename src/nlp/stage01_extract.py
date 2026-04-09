@@ -54,14 +54,17 @@ def run_extract(
         ValueError: If the response content cannot be parsed as HTML.
     """
     LOG.info("========================")
-    LOG.info("STAGE 01: EXTRACT starting... ")
+    LOG.info("STAGE 01: EXTRACT starting...")
+    LOG.info("Purpose: Fetch HTML from web page and save to file")
     LOG.info("========================")
 
     LOG.info(f"EXTRACT: Fetching HTML from {source_url}")
+    LOG.info("EXTRACT: Initiating HTTP request with custom headers...")
 
     # Use the requests.get() function to make an HTTP GET request
     # to the source_url with the provided headers.
     response = requests.get(source_url, headers=http_request_headers, timeout=30)
+    LOG.info(f"EXTRACT: HTTP response status: {response.status_code}")
 
     # Use the raise_for_status() method to check for HTTP errors
     # and raise an exception if the request was unsuccessful.
@@ -70,11 +73,13 @@ def run_extract(
     # Use the .text attribute of the response object to get the HTML content
     # and store it in a variable called html_content.
     html_content: str = response.text
+    LOG.info(f"EXTRACT: HTML content retrieved - {len(html_content)} characters")
 
     # Use the write_text() method of the raw_html_path to
     # save the raw HTML data to a file.
     # Specify the encoding as "utf-8" to ensure proper handling of special characters.
     raw_html_path.write_text(html_content, encoding="utf-8")
+    LOG.info("EXTRACT: HTML saved to file successfully")
 
     # Use log.info() to log the source URL (a string).
     # Use a formatted string (f-string) to include the variable in the log message.

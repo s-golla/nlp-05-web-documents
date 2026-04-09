@@ -58,6 +58,7 @@ def run_validate(
     """
     LOG.info("========================")
     LOG.info("STAGE 02: VALIDATE starting...")
+    LOG.info("Purpose: Inspect and validate HTML structure")
     LOG.info("========================")
 
     # ============================================================
@@ -65,6 +66,9 @@ def run_validate(
     # ============================================================
 
     LOG.info("HTML STRUCTURE INSPECTION:")
+    LOG.info(
+        "Checking for required elements (title, authors, abstract, subjects, dateline)..."
+    )
 
     # Parse the HTML content using BeautifulSoup
     soup = BeautifulSoup(html_content, "html.parser")
@@ -89,10 +93,23 @@ def run_validate(
     dateline = soup.find("div", class_="dateline")
 
     LOG.info("VALIDATE: Title found: %s", title is not None)
+    if title:
+        LOG.info(f"  Title preview: {title.get_text(strip=True)[:80]}...")
     LOG.info("VALIDATE: Authors found: %s", authors is not None)
+    if authors:
+        author_list = [a.get_text(strip=True) for a in authors.find_all("a")]
+        LOG.info(f"  Author count: {len(author_list)}")
     LOG.info("VALIDATE: Abstract found: %s", abstract is not None)
+    if abstract:
+        abstract_text = abstract.get_text(strip=True)
+        LOG.info(f"  Abstract preview: {abstract_text[:80]}...")
+        LOG.info(f"  Abstract length: {len(abstract_text)} characters")
     LOG.info("VALIDATE: Subjects found: %s", subjects is not None)
+    if subjects:
+        LOG.info(f"  Subjects: {subjects.get_text(strip=True)}")
     LOG.info("VALIDATE: Dateline found: %s", dateline is not None)
+    if dateline:
+        LOG.info(f"  Submission date: {dateline.get_text(strip=True)}")
 
     missing = []
     if not title:

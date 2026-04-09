@@ -277,6 +277,28 @@ def run_transform(
     )
     LOG.info(f"Calculated abstract sentence count: {abstract_sentence_count}")
 
+    # Calculate derived field: abstract character count
+    abstract_character_count: int = len(abstract) if abstract != "unknown" else 0
+    LOG.info(f"Calculated abstract character count: {abstract_character_count}")
+
+    # Calculate derived field: average word length per sentence
+    average_word_length_per_sentence: float = 0.0
+    if abstract != "unknown" and abstract_sentence_count > 0:
+        total_chars = len(abstract)
+        word_count = abstract_word_count
+        average_word_length_per_sentence = (
+            round(total_chars / word_count, 2) if word_count > 0 else 0.0
+        )
+    LOG.info(
+        f"Calculated average word length per sentence: {average_word_length_per_sentence}"
+    )
+
+    # Calculate derived field: average words per author
+    average_words_per_author: float = 0.0
+    if author_count > 0:
+        average_words_per_author = round(abstract_word_count / author_count, 2)
+    LOG.info(f"Calculated average words per author: {average_words_per_author}")
+
     LOG.info("========================")
     LOG.info("STAGE 03f: Build record and create DataFrame")
     LOG.info("========================")
@@ -291,6 +313,9 @@ def run_transform(
         "abstract_word_count": abstract_word_count,
         "author_count": author_count,
         "abstract_sentence_count": abstract_sentence_count,
+        "abstract_character_count": abstract_character_count,
+        "average_word_length_per_sentence": average_word_length_per_sentence,
+        "average_words_per_author": average_words_per_author,
     }
 
     df = pd.DataFrame([record])
@@ -302,6 +327,11 @@ def run_transform(
     LOG.info(f"  Author count: {record['author_count']}")
     LOG.info(f"  Abstract word count: {record['abstract_word_count']}")
     LOG.info(f"  Abstract sentence count: {record['abstract_sentence_count']}")
+    LOG.info(f"  Abstract character count: {record['abstract_character_count']}")
+    LOG.info(
+        f"  Average word length per sentence: {record['average_word_length_per_sentence']}"
+    )
+    LOG.info(f"  Average words per author: {record['average_words_per_author']}")
     LOG.info(f"  DataFrame preview:\n{df.head()}")
 
     LOG.info("Sink: Pandas DataFrame created")

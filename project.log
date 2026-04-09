@@ -182,3 +182,208 @@
 2026-04-08 21:09:53 | INFO | CI | ========================
 2026-04-08 21:09:53 | INFO | CI | Pipeline executed successfully!
 2026-04-08 21:09:53 | INFO | CI | ========================
+2026-04-08 21:42:28 | INFO | CI | === RUN START ===
+2026-04-08 21:42:28 | INFO | CI | project=Module 5: EVTL PIPELINE - WEB DOCUMENTS (HTML)
+2026-04-08 21:42:28 | INFO | CI | repo_dir=nlp-05-web-documents
+2026-04-08 21:42:28 | INFO | CI | python=3.14.0
+2026-04-08 21:42:28 | INFO | CI | os=Windows 11
+2026-04-08 21:42:28 | INFO | CI | shell=powershell
+2026-04-08 21:42:28 | INFO | CI | cwd=.
+2026-04-08 21:42:28 | INFO | CI | github_actions=False
+2026-04-08 21:42:28 | INFO | CI | START PIPELINE
+2026-04-08 21:42:28 | INFO | CI | ROOT_PATH = .
+2026-04-08 21:42:28 | INFO | CI | DATA_PATH = data
+2026-04-08 21:42:28 | INFO | CI | RAW_PATH = data\raw
+2026-04-08 21:42:28 | INFO | CI | PROCESSED_PATH = data\processed
+2026-04-08 21:42:28 | INFO | CI | ========================
+2026-04-08 21:42:28 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-08 21:42:28 | INFO | CI | ========================
+2026-04-08 21:42:28 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/abs/2310.11453
+2026-04-08 21:42:29 | INFO | CI | SOURCE URL = https://arxiv.org/abs/2310.11453
+2026-04-08 21:42:29 | INFO | CI | SINK PATH = data\raw\sgolla_raw.html
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-08 21:42:29 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-08 21:42:29 | INFO | CI | Top-level elements: ['html']
+2026-04-08 21:42:29 | INFO | CI | VALIDATE: Title found: True
+2026-04-08 21:42:29 | INFO | CI | VALIDATE: Authors found: True
+2026-04-08 21:42:29 | INFO | CI | VALIDATE: Abstract found: True
+2026-04-08 21:42:29 | INFO | CI | VALIDATE: Subjects found: True
+2026-04-08 21:42:29 | INFO | CI | VALIDATE: Dateline found: True
+2026-04-08 21:42:29 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-08 21:42:29 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Extracting metadata from HTML
+2026-04-08 21:42:29 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-08 21:42:29 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-08 21:42:29 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Extracted title: BitNet: Scaling 1-bit Transformers for Large Language Models
+2026-04-08 21:42:29 | INFO | CI | Extracted authors: Hongyu Wang, Shuming Ma, Li Dong, Shaohan Huang, Huaijie Wang, Lingxiao Ma, Fan Yang, Ruiping Wang, Yi Wu, Furu Wei
+2026-04-08 21:42:29 | INFO | CI | Extracted abstract: The increasing size of large language models has posed challenges for deployment and raised concerns...
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Extracted subjects: Computer Science > Computation and Language
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Extracted submitted: [Submitted on 17 Oct 2023]
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Extracted arxiv_id: 2310.11453
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Calculated abstract word count: 117
+2026-04-08 21:42:29 | INFO | CI | Calculated author count: 10
+2026-04-08 21:42:29 | INFO | CI | Calculated abstract sentence count: 6
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Created DataFrame with 1 row and 9 columns
+2026-04-08 21:42:29 | INFO | CI | Columns: ['arxiv_id', 'title', 'authors', 'subjects', 'submitted', 'abstract', 'abstract_word_count', 'author_count', 'abstract_sentence_count']
+2026-04-08 21:42:29 | INFO | CI | DataFrame Details
+2026-04-08 21:42:29 | INFO | CI |   Title: BitNet: Scaling 1-bit Transformers for Large Language Models
+2026-04-08 21:42:29 | INFO | CI |   Author count: 10
+2026-04-08 21:42:29 | INFO | CI |   Abstract word count: 117
+2026-04-08 21:42:29 | INFO | CI |   Abstract sentence count: 6
+2026-04-08 21:42:29 | INFO | CI |   DataFrame preview:
+     arxiv_id  ... abstract_sentence_count
+0  2310.11453  ...                       6
+
+[1 rows x 9 columns]
+2026-04-08 21:42:29 | INFO | CI | Sink: Pandas DataFrame created
+2026-04-08 21:42:29 | INFO | CI | Transformation complete.
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | SINK PATH = data\processed\sgolla_processed.csv
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:42:29 | INFO | CI | Pipeline executed successfully!
+2026-04-08 21:42:29 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | === RUN START ===
+2026-04-08 21:47:47 | INFO | CI | project=Module 5: EVTL PIPELINE - WEB DOCUMENTS (HTML)
+2026-04-08 21:47:47 | INFO | CI | repo_dir=nlp-05-web-documents
+2026-04-08 21:47:47 | INFO | CI | python=3.14.0
+2026-04-08 21:47:47 | INFO | CI | os=Windows 11
+2026-04-08 21:47:47 | INFO | CI | shell=powershell
+2026-04-08 21:47:47 | INFO | CI | cwd=.
+2026-04-08 21:47:47 | INFO | CI | github_actions=False
+2026-04-08 21:47:47 | INFO | CI | START PIPELINE
+2026-04-08 21:47:47 | INFO | CI | ROOT_PATH = .
+2026-04-08 21:47:47 | INFO | CI | DATA_PATH = data
+2026-04-08 21:47:47 | INFO | CI | RAW_PATH = data\raw
+2026-04-08 21:47:47 | INFO | CI | PROCESSED_PATH = data\processed
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 01: EXTRACT starting...
+2026-04-08 21:47:47 | INFO | CI | Purpose: Fetch HTML from web page and save to file
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/abs/2310.11453
+2026-04-08 21:47:47 | INFO | CI | EXTRACT: Initiating HTTP request with custom headers...
+2026-04-08 21:47:47 | INFO | CI | EXTRACT: HTTP response status: 200
+2026-04-08 21:47:47 | INFO | CI | EXTRACT: HTML content retrieved - 45460 characters
+2026-04-08 21:47:47 | INFO | CI | EXTRACT: HTML saved to file successfully
+2026-04-08 21:47:47 | INFO | CI | SOURCE URL = https://arxiv.org/abs/2310.11453
+2026-04-08 21:47:47 | INFO | CI | SINK PATH = data\raw\sgolla_raw_new.html
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-08 21:47:47 | INFO | CI | Purpose: Inspect and validate HTML structure
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-08 21:47:47 | INFO | CI | Checking for required elements (title, authors, abstract, subjects, dateline)...
+2026-04-08 21:47:47 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-08 21:47:47 | INFO | CI | Top-level elements: ['html']
+2026-04-08 21:47:47 | INFO | CI | VALIDATE: Title found: True
+2026-04-08 21:47:47 | INFO | CI |   Title preview: Title:BitNet: Scaling 1-bit Transformers for Large Language Models...
+2026-04-08 21:47:47 | INFO | CI | VALIDATE: Authors found: True
+2026-04-08 21:47:47 | INFO | CI |   Author count: 10
+2026-04-08 21:47:47 | INFO | CI | VALIDATE: Abstract found: True
+2026-04-08 21:47:47 | INFO | CI |   Abstract preview: Abstract:The increasing size of large language models has posed challenges for d...
+2026-04-08 21:47:47 | INFO | CI |   Abstract length: 888 characters
+2026-04-08 21:47:47 | INFO | CI | VALIDATE: Subjects found: True
+2026-04-08 21:47:47 | INFO | CI |   Subjects: Computer Science > Computation and Language
+2026-04-08 21:47:47 | INFO | CI | VALIDATE: Dateline found: True
+2026-04-08 21:47:47 | INFO | CI |   Submission date: [Submitted on 17 Oct 2023]
+2026-04-08 21:47:47 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-08 21:47:47 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Extracting metadata from HTML
+2026-04-08 21:47:47 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-08 21:47:47 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-08 21:47:47 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Extracted title: BitNet: Scaling 1-bit Transformers for Large Language Models
+2026-04-08 21:47:47 | INFO | CI | Extracted authors: Hongyu Wang, Shuming Ma, Li Dong, Shaohan Huang, Huaijie Wang, Lingxiao Ma, Fan Yang, Ruiping Wang, Yi Wu, Furu Wei
+2026-04-08 21:47:47 | INFO | CI | Extracted abstract: The increasing size of large language models has posed challenges for deployment and raised concerns...
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Extracted subjects: Computer Science > Computation and Language
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Extracted submitted: [Submitted on 17 Oct 2023]
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Extracted arxiv_id: 2310.11453
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Calculated abstract word count: 117
+2026-04-08 21:47:47 | INFO | CI | Calculated author count: 10
+2026-04-08 21:47:47 | INFO | CI | Calculated abstract sentence count: 6
+2026-04-08 21:47:47 | INFO | CI | Calculated abstract character count: 879
+2026-04-08 21:47:47 | INFO | CI | Calculated average word length per sentence: 7.51
+2026-04-08 21:47:47 | INFO | CI | Calculated average words per author: 11.7
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Created DataFrame with 1 row and 12 columns
+2026-04-08 21:47:47 | INFO | CI | Columns: ['arxiv_id', 'title', 'authors', 'subjects', 'submitted', 'abstract', 'abstract_word_count', 'author_count', 'abstract_sentence_count', 'abstract_character_count', 'average_word_length_per_sentence', 'average_words_per_author']
+2026-04-08 21:47:47 | INFO | CI | DataFrame Details
+2026-04-08 21:47:47 | INFO | CI |   Title: BitNet: Scaling 1-bit Transformers for Large Language Models
+2026-04-08 21:47:47 | INFO | CI |   Author count: 10
+2026-04-08 21:47:47 | INFO | CI |   Abstract word count: 117
+2026-04-08 21:47:47 | INFO | CI |   Abstract sentence count: 6
+2026-04-08 21:47:47 | INFO | CI |   Abstract character count: 879
+2026-04-08 21:47:47 | INFO | CI |   Average word length per sentence: 7.51
+2026-04-08 21:47:47 | INFO | CI |   Average words per author: 11.7
+2026-04-08 21:47:47 | INFO | CI |   DataFrame preview:
+     arxiv_id  ... average_words_per_author
+0  2310.11453  ...                     11.7
+
+[1 rows x 12 columns]
+2026-04-08 21:47:47 | INFO | CI | Sink: Pandas DataFrame created
+2026-04-08 21:47:47 | INFO | CI | Transformation complete.
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | SINK PATH = data\processed\sgolla_processed_new.csv
+2026-04-08 21:47:47 | INFO | CI | ========================
+2026-04-08 21:47:47 | INFO | CI | Pipeline executed successfully!
+2026-04-08 21:47:47 | INFO | CI | ========================
